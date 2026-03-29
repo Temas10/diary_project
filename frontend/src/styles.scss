@@ -1,0 +1,177 @@
+// frontend/src/styles.scss
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap');
+
+ $bg-color: #1a1612;     
+ $card-bg: #2a2420;       
+ $text-color: #e0d5c7;    
+ $accent-color: #c4956a;  
+ $secondary-text: #9a918a; 
+
+body {
+    background-color: $bg-color;
+    color: $text-color;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: rgba(26, 22, 18, 0.95);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    
+    .logo {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.8rem;
+        color: $accent-color;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+
+    ul {
+        list-style: none;
+        display: flex;
+        gap: 30px;
+    }
+
+    a {
+        color: $text-color;
+        text-decoration: none;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: color 0.3s;
+        
+        &:hover {
+            color: $accent-color;
+        }
+    }
+}
+
+.hero-section {
+    padding: 60px 0 40px;
+    text-align: center;
+    
+    h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: 3rem;
+        color: $accent-color;
+        margin: 0;
+    }
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding-top: 20px;
+}
+
+.gallery-item {
+    position: relative;
+    background: $card-bg;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    
+    height: 400px; 
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+        
+        .overlay {
+            opacity: 1;
+        }
+    }
+
+    background-size: cover;
+    background-position: center;
+
+    .overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+        padding: 40px 20px 20px;
+        color: white;
+        
+        transition: opacity 0.3s ease;
+        
+        h3 {
+            font-family: 'Playfair Display', serif;
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        p {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+            color: $secondary-text;
+        }
+    }
+}
+
+.diary-container {
+    display: grid;
+    gap: 30px;
+}
+
+.thought-card {
+    background: $card-bg;
+    padding: 30px;
+    border-left: 3px solid $accent-color;
+    
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+
+    &.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    h2 {
+        font-family: 'Playfair Display', serif;
+        color: $accent-color;
+        margin: 0 0 10px;
+    }
+    
+    .date {
+        display: inline-block;
+        background: rgba(255,255,255,0.1);
+        padding: 4px 10px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        color: $secondary-text;
+        margin-bottom: 15px;
+    }
+
+    p {
+        color: $text-color;
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-nav {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+}
